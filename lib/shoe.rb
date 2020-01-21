@@ -29,10 +29,6 @@ class Shoe < ActiveRecord::Base
         end 
     end 
 
-       
-
-
-
         def low_price_range
             a = Shoe.where(price: 1..50)
             if a.empty?

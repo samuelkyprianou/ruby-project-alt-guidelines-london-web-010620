@@ -27,12 +27,3 @@ else
 end
 
 end
-
-
-
-
-# def greet
-#     puts "Welcome to App Name, the fastest and most efficident app to sell branded shoes"
-# end 
-
-# greet 
