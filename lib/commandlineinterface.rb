@@ -4,15 +4,16 @@ class CommandLineInterface
     end 
     
     def select_function
-        puts "Please enter the number corresponding to the function you would like to use today:"
-        puts "
-        1. Search by Brand Name
-        2. Search by Price Range
-        3. List all Current Items for Sale
-        4. Add a ne Listing
-        5. Exit"
-        input = gets.chomp
-        input
+    puts "Please enter the number corresponding to the function you would like to use today:"
+    puts "
+    1. Search by Brand Name
+    2. Search by Price Range
+    3. List all Current Items for Sale
+    4. Add a new Listing
+    5. Exit"
+    input = gets.chomp
+    input
+      
     end
 
 
