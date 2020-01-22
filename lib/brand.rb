@@ -2,27 +2,19 @@ class Brand < ActiveRecord::Base
     has_many :shoes
 
 
-    def print_to_screen(shoes_array)
-        shoes_array.each do |shoe|
-        print "-----------------------------\n" 
-        puts "Name: #{shoe.shoe_name}"
-        puts "Price: #{shoe.price}"
-        puts "Rarity: #{shoe.rarity}"
-        print "-----------------------------\n"
-        end
-    end
-
 
     def brand_search
-        puts"Please enter a brand name:"
+        puts"Please enter a brand name to view products or type exit to go back to the main menu:"
         input = gets.chomp
         brand = Brand.find_by(brand_name: input)
-        if brand == nil
+        if input.downcase == "exit"
+        elsif !brand
             puts "Sorry, there is no current stock of this brand."
             brand_search
         else
         shoes = Shoe.where(brand: brand)
-        print_to_screen(shoes)
+        CommandLineInterface.print_to_screen(shoes)
+        brand_search
         end
     end
 

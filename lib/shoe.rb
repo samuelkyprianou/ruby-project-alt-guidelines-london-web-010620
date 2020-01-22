@@ -3,21 +3,17 @@ class Shoe < ActiveRecord::Base
     belongs_to :brand
     
 
-    def print_price(a)
-        a.each do |shoe|
-        puts "This shoe #{shoe.shoe_name} is in stock and costs £#{shoe.price}"
-        end 
-    end
-
      def price_range
-        puts "Please select your price range:"
+        puts "Please select your price range or type exit to go back to the main menu:"
             puts "
             1. £1 - 50
             2. £51 - 100
             3. £101+
+            Exit
             "
             input = gets.chomp
-         if input == "1"
+            if input.downcase == "exit"
+        elsif input == "1"
             low_price_range
          elsif input == "2"
             medium_price_range
@@ -35,7 +31,8 @@ class Shoe < ActiveRecord::Base
                 puts "No shoes available in that price range. Please select another option"
                 price_range
             else
-            print_price(a)
+            CommandLineInterface.print_to_screen(a)
+            exit_function
             end
         end
 
@@ -45,7 +42,8 @@ class Shoe < ActiveRecord::Base
             puts "No shoes available in that price range. Please select another option"
             price_range
             else
-            print_price(b)
+            CommandLineInterface.print_to_screen(b)
+            exit_function
             end
         end 
 
@@ -55,8 +53,23 @@ class Shoe < ActiveRecord::Base
             puts "No shoes available in that price range. Please select another option"
             price_range
             else
-            print_price(c)
+            CommandLineInterface.print_to_screen(c)
+            exit_function
             end
         end
+
+        def exit_function
+            puts "If you would like to choose another option please type 1, or exit to return to the main menu."
+            input = gets.chomp
+            if input == "1"
+                price_range
+            elsif input.downcase == "exit"
+            else
+            puts "Invalid Option, please try again."
+            exit_function
+            end
+        end
+
+
 
     end 
