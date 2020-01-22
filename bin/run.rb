@@ -22,7 +22,7 @@ elsif
     function == "4"
     seller.delete_account
 else
-    funtion == "5"
+    function == "5"
     quit = true
 end
 
