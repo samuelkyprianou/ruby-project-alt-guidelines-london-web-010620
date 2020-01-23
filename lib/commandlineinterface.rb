@@ -1,6 +1,6 @@
 class CommandLineInterface
-    def greet
-        puts "
+  def greet
+    puts "
 
    /$$$$$$            /$$$$$$$$                 /$$   /$$        /$$$$$$$$ /$$  /$$$$$$           
   /$$__  $$          | $$_____/                | $$$ | $$       |__  $$__/|__/ /$$__  $$          
@@ -14,10 +14,10 @@ class CommandLineInterface
                                | $$                                                               
                                |__/                                                                                                                           
             "
-        puts "Welcome to Crep Nation, the fastest and most efficient app to sell branded shoes"
-    end 
-    
-    def select_function
+    puts "Welcome to Crep Nation, the fastest and most efficient app to sell branded shoes"
+  end
+
+  def select_function
     puts "Please enter the number corresponding to the function you would like to use today:"
     puts "
     1. Search by Brand Name
@@ -27,36 +27,63 @@ class CommandLineInterface
     5. Exit"
     input = gets.chomp
     input
-    end
+  end
 
-    def self.print_to_screen(shoes_array)
-        ActiveRecord::Base.logger = nil
-        counter = 0
-        shoes_array.each do |shoe|
-        print "-----------------------------\n" 
-        puts "#{counter += 1}. Name: #{shoe.shoe_name}"
-        puts "   Price: #{shoe.price}"
-        puts "   Rarity: #{shoe.rarity}"
-        puts "   Brand: #{shoe.brand.brand_name}"
-        print "-----------------------------\n"
-        end
+  def self.print_to_screen(shoes_array)
+    ActiveRecord::Base.logger = nil
+    counter = 0
+    shoes_array.each do |shoe|
+      print "-----------------------------\n"
+      puts "#{counter += 1}. Name: #{shoe.shoe_name}"
+      puts "   Price: #{shoe.price}"
+      puts "   Rarity: #{shoe.rarity}"
+      puts "   Brand: #{shoe.brand.brand_name}"
+      print "-----------------------------\n"
     end
+  end
 
-    def self.seller_functions
-        puts "What would you like to do today?"
-        puts "
+  def self.seller_functions
+    puts "What would you like to do today?"
+    puts "
         1. View your current shoe listings
         2. Update price of a specific shoe
         3. Delete your account
         4. Logout"
-    end
+  end
 
+  def self.price_range_print
+    puts "Please select your price range or type exit to go back to the main menu:"
+    puts "
+            1. £1 - 50
+            2. £51 - 100
+            3. £101+
+            4. Exit
+            "
+  end
 
+  def goodbye
+    puts "
+        
 
+         ___              _ ___          _ 
+        / __|___  ___  __| | _ )_  _ ___| |
+       | (_ / _ \\/ _ \\/ _` | _ \\ || / -_)_|
+        \\___\\ ___/\___/\\__,_|___/\\_, \\___(_)
+                                |__/       
+      
+                                                     "
+    puts "Many thanks for using Crep Nation, Goodbye!"
+  end
 
-
-
+  def self.account_creation(input)
+    sleep(1)
+    print "------------------------------------------\n"
+    sleep(1)
+    print "------------------------------------------\n"
+    sleep(2)
+    print "------------------------------------------\n"
+    sleep(2)
+    puts "Account has been successfully created. Welcome, #{input}!"
+    sleep(3)
+  end
 end
-
-
-
