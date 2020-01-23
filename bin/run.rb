@@ -27,7 +27,9 @@ elsif
 elsif
     function == "5"
     quit = true
+    system "clear"
     puts "Many thanks for using Crep Nation, Goodbye!"
+    sleep(3)
 else
     puts "Invalid input, please try again."
 end
