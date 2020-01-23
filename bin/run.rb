@@ -6,8 +6,8 @@ cli = CommandLineInterface.new
 brand = Brand.new
 shoe = Shoe.new
 seller = Seller.new
+cli.greet
 while quit == false
-  cli.greet
   function = cli.select_function
 
   if function == "1"

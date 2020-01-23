@@ -46,9 +46,10 @@ class CommandLineInterface
     puts "What would you like to do today?"
     puts "
         1. View your current shoe listings
-        2. Update price of a specific shoe
-        3. Delete your account
-        4. Logout"
+        2. Create a shoe listing
+        3. Update price of a specific shoe
+        4. Delete your account
+        5. Logout"
   end
 
   def self.price_range_print
@@ -75,7 +76,7 @@ class CommandLineInterface
     puts "Many thanks for using Crep Nation, Goodbye!"
   end
 
-  def self.account_creation(input)
+  def self.loading
     sleep(1)
     print "------------------------------------------\n"
     sleep(1)
@@ -83,7 +84,14 @@ class CommandLineInterface
     sleep(2)
     print "------------------------------------------\n"
     sleep(2)
-    puts "Account has been successfully created. Welcome, #{input}!"
-    sleep(3)
+  end
+
+  def self.brand_list(brands)
+    ActiveRecord::Base.logger = nil
+    counter = 0
+    brands.each do |brand|
+      puts "#{counter += 1}. #{brand.brand_name}"
+    end
+    puts "#{brands.count + 1}. Exit"
   end
 end
