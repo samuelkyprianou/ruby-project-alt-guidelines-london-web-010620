@@ -1,7 +1,7 @@
 require_relative "../config/environment"
 system "clear"
 quit = false
-
+pid = fork { exec "afplay", "lib/soundfile/Welcome.mp3" }
 cli = CommandLineInterface.new
 brand = Brand.new
 shoe = Shoe.new

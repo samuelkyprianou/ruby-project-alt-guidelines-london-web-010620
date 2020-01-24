@@ -36,9 +36,12 @@ class Seller < ActiveRecord::Base
       sleep(2)
       delete_account
     else
+      shoe_array = existing_user.shoes
+      Shoe.destroy_shoes(shoe_array)
       existing_user.destroy
       CommandLineInterface.loading
       puts "Your account has been successfully deleted, many thanks for using our platform."
+      pid = fork { exec "afplay", "lib/soundfile/ByeBye.mp3" }
       sleep(5)
       system "clear"
     end
@@ -148,6 +151,7 @@ class Seller < ActiveRecord::Base
     a << s
     CommandLineInterface.loading
     CommandLineInterface.print_to_screen(a)
+    pid = fork { exec "afplay", "lib/soundfile/CaChing.mp3" }
     puts "Your shoe has been successfully listed. ££££££ "
     sleep(5)
     system "clear"

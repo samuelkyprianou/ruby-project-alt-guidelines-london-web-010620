@@ -81,4 +81,8 @@ class Shoe < ActiveRecord::Base
       exit_function
     end
   end
+
+  def self.destroy_shoes(array_of_shoes)
+    array_of_shoes.each { |shoe| shoe.destroy }
+  end
 end
