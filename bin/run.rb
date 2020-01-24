@@ -8,26 +8,27 @@ shoe = Shoe.new
 seller = Seller.new
 cli.greet
 while quit == false
-  function = cli.select_function
+    prompt = TTY::Prompt.new
+          menu_options = ["Search by Brand Name", "Search by Price Range", "Create new Seller Account", "Login", "Exit"]
+          menu = prompt.select("Select one of the options below:", menu_options, filter: true)
+    case menu
 
-  if function == "1"
+    when "Search by Brand Name"
     system "clear"
     brand.brand_search
-  elsif function == "2"
+    when "Search by Price Range"
     system "clear"
     shoe.price_range
-  elsif function == "3"
+    when "Create new Seller Account"
     system "clear"
     seller.create_account
-  elsif function == "4"
+    when "Login"
     seller.login
-  elsif function == "5"
+    when "Exit"
     quit = true
     system "clear"
     cli.goodbye
     sleep(3)
     system "clear"
-  else
-    puts "Invalid input, please try again."
   end
 end
