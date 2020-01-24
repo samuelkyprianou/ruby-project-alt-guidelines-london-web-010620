@@ -66,23 +66,24 @@ class Seller < ActiveRecord::Base
   def invoke_seller_function(existing_user)
     quit = false
     while quit == false
-      CommandLineInterface.seller_functions
-      input = gets.chomp
-      if input == "1"
+      prompt = TTY::Prompt.new
+      menu_options = ["View your current shoe listings", "Create a shoe listing", "Update price of a specific shoe", "Delete your account", "Logout"]
+      menu = prompt.select("Select one of the options below:", menu_options, filter: true)
+      case menu
+
+      when "View your current shoe listings"
         system "clear"
         current_shoe_listings(existing_user)
-      elsif input == "2"
+      when "Create a shoe listing"
         create_a_shoe_listing(existing_user)
-      elsif input == "3"
+      when "Update price of a specific shoe"
         update_price(existing_user)
-      elsif input == "4"
+      when "Delete your account"
         quit = true
         delete_account
-      elsif input == "5"
+      when "Logout"
         quit = true
         system "clear"
-      else
-        puts "Invalid option, please try again"
       end
     end
   end

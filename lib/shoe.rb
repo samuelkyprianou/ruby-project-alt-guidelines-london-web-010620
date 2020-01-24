@@ -3,19 +3,25 @@ class Shoe < ActiveRecord::Base
   belongs_to :brand
 
   def price_range
-    CommandLineInterface.price_range_print
-    input = gets.chomp
-    if input.downcase == "4"
-      system "clear"
-    elsif input == "1"
-      low_price_range
-    elsif input == "2"
-      medium_price_range
-    elsif input == "3"
-      high_price_range
-    else
-      puts "Invalid Option, please try again."
-      price_range
+    quit = false
+    while quit == false
+      prompt = TTY::Prompt.new
+      menu_options = ["£1 - 50", "£51 - 100", "£101+", "Exit"]
+      menu = prompt.select("Select one of the options below:", menu_options, filter: true)
+      case menu
+      when "Exit"
+        quit = true
+        system "clear"
+      when "£1 - 50"
+        low_price_range
+        sleep(2)
+      when "£51 - 100"
+        medium_price_range
+        sleep(2)
+      when "£101+"
+        high_price_range
+        sleep(2)
+      end
     end
   end
 
@@ -26,7 +32,6 @@ class Shoe < ActiveRecord::Base
       price_range
     else
       CommandLineInterface.print_to_screen(a)
-      exit_function
     end
   end
 
@@ -37,7 +42,6 @@ class Shoe < ActiveRecord::Base
       price_range
     else
       CommandLineInterface.print_to_screen(b)
-      exit_function
     end
   end
 
@@ -48,7 +52,6 @@ class Shoe < ActiveRecord::Base
       price_range
     else
       CommandLineInterface.print_to_screen(c)
-      exit_function
     end
   end
 
@@ -66,20 +69,6 @@ class Shoe < ActiveRecord::Base
       price_input = gets.chomp
     end
     Shoe.create(shoe_name: name_input, price: price_input, rarity: ["High", "Medium", "Low"].sample)
-  end
-
-  def exit_function
-    puts "If you would like to choose another option please type 1, or exit to return to the main menu."
-    input = gets.chomp
-    if input == "1"
-      system "clear"
-      price_range
-    elsif input.downcase == "exit"
-      system "clear"
-    else
-      puts "Invalid Option, please try again."
-      exit_function
-    end
   end
 
   def self.destroy_shoes(array_of_shoes)
